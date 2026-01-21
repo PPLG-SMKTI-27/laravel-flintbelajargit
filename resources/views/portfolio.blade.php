@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+@section('title', 'Portofolio Saya')
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -330,6 +334,7 @@
     </style>
 </head>
 <body>
+    @section('content')
     <!-- Efek latar belakang -->
     <div class="bg-effect">
         <div class="bg-purple-circle"></div>
@@ -388,5 +393,6 @@
             });
         });
     </script>
+    @endsection
 </body>
 </html>
