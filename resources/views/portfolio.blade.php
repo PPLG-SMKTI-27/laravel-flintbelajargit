@@ -28,7 +28,43 @@
 
 @section('content')
 <!-- Profil section -->
-<section class="profile-section">
-    <!-- Konten profil... -->
+<div class="container">
+    <!-- Profil section -->
+    <section class="profile-section">
+            <div class="profile-content">
+                <p class="profile-greeting">Halo, {{ $user }}</p>
+                <h1 class="profile-name">Nama Developer</h1>
+                <h2 class="profile-title">Full Stack Web Developer</h2>
+                <p class="profile-description">
+                    Saya seorang developer dengan spesialisasi dalam Laravel, PHP, dan teknologi web modern. 
+                    Saya membuat aplikasi web yang responsif, cepat, dan efisien dengan fokus pada pengalaman pengguna yang optimal.
+                </p>
+                <a href="{{ url('/projects') }}" class="cta-button">Lihat Proyek Saya</a>
+            </div>
+            
+            <div class="profile-image-container">
+                <div class="profile-image">
+                    <!-- Ganti dengan foto profil Anda -->
+                    <img src="images/me.jpg" alt="Foto Profil">
+                    <div class="purple-glow"></div>
+                </div>
+            </div>
+        </section>
+</div>
+
+    <script>
+        // Tambahkan efek interaktif pada tombol
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctaButton = document.querySelector('.cta-button');
+            
+            ctaButton.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            
+            ctaButton.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
 </section>
 @endsection

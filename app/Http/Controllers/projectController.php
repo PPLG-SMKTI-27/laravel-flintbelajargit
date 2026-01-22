@@ -9,10 +9,12 @@ class projectController extends Controller
     /**
      * Show the profile for a given user.
      */
-    public function Index1(): View
+    public function portfolio(): \Illuminate\View\View
     {
         return view('portfolio', [
-            'user' => 'Flint'
+            'user' => 'Flint',
+            'title' => 'Full Stack Developer',
+            'description' => 'Spesialis Laravel & PHP dengan pengalaman 5+ tahun'
         ]);
     }
 
@@ -97,6 +99,16 @@ class projectController extends Controller
                 'description' => 'Platform pembelajaran online dengan sistem kursus interaktif, pelacakan kemajuan, dan sistem penilaian.',
                 'image' => 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80',
                 'technologies' => ['Laravel', 'Vue.js', 'Stripe API', 'WebRTC'],
+                'demo_url' => '#',
+                'source_url' => '#'
+            ],
+            [
+                'id' => 9,
+                'title' => 'Social Networking Site',
+                'category' => 'Social Network',
+                'description' => 'Situs jejaring sosial dengan fitur profil pengguna, pertemanan, pesan instan, dan umpan berita.',
+                'image' => 'images/awwa.avif',
+                'technologies' => ['Laravel', 'React', 'WebSockets', 'MySQL'],
                 'demo_url' => '#',
                 'source_url' => '#'
             ]
