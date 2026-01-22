@@ -1,3 +1,6 @@
+@extends('layouts.projectLayout')
+@section('title', 'Portofolio Saya')
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -350,6 +353,7 @@
     </style>
 </head>
 <body>
+    @section('Content')
     <!-- Efek latar belakang -->
     <div class="bg-effect">
         <div class="bg-purple-circle"></div>
@@ -380,8 +384,9 @@
                 <span>← Kembali ke Beranda</span>
             </a>
         </section>
-        
+        @endsection
         <!-- Grid proyek -->
+        @section('CardGrid')
         <section class="projects-grid">
             <!-- Proyek 1 -->
             <div class="project-card">
@@ -503,6 +508,7 @@
                 </div>
             </div>
         </section>
+        @endsection
         
         <!-- Footer -->
         <footer>
