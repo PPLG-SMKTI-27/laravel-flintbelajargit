@@ -43,6 +43,87 @@
             overflow: hidden;
         }
         
+        /* Di CSS portfolio.blade.php */
+        .login-success-message {
+            background: linear-gradient(90deg, rgba(46, 204, 113, 0.2), rgba(46, 204, 113, 0.1));
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            color: #2ecc71;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+            font-weight: 500;
+            max-width: 600px;
+            animation: fadeIn 0.5s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.1);
+            position: relative;
+        }
+
+        .success-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-success {
+            background: none;
+            border: none;
+            color: #2ecc71;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: 15px;
+            padding: 0 5px;
+            line-height: 1;
+        }
+
+        .close-success:hover {
+            color: #27ae60;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Auto-hide pesan setelah 5 detik */
+        .login-success-message {
+            animation: fadeIn 0.5s ease, fadeOut 0.5s ease 5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+
+        /* Tambahkan di CSS portfolio.blade.php */
+        .login-success-message {
+            background: linear-gradient(90deg, rgba(46, 204, 113, 0.2), rgba(46, 204, 113, 0.1));
+            border: 1px solid rgba(46, 204, 113, 0.3);
+            color: #2ecc71;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+            font-weight: 500;
+            max-width: 600px;
+            animation: fadeIn 0.5s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Efek hover untuk tombol login di navigasi */
+        nav a[href*="login"]:hover {
+            color: var(--primary-purple) !important;
+        }
+
+        nav a[href*="login"]::after {
+            background: linear-gradient(90deg, var(--light-purple), var(--primary-purple));
+        }
         .bg-purple-circle {
             position: absolute;
             width: 300px;
@@ -327,6 +408,8 @@
                 height: 250px;
             }
         }
+
+        
     </style>
     @stack('styles')
 </head>

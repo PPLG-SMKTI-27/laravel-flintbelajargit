@@ -21,6 +21,16 @@
             <li><a href="#skills">Keahlian</a></li>
             <li><a href="{{ url('/contact') }}">Kontak</a></li>
             <li><a href="{{ url('/projects') }}">Proyek</a></li>
+            <!-- Tombol login/logout dinamis -->
+            @if(session('is_logged_in'))
+                <li><a href="{{ route('logout') }}" style="color: #ff6b6b;">
+                    🚪 Logout
+                </a></li>
+            @else
+                <li><a href="{{ route('login') }}" style="color: var(--light-purple);">
+                    🔐 Login
+                </a></li>
+            @endif
         </ul>
     </nav>
 </header>
@@ -30,6 +40,16 @@
 <!-- Profil section -->
 <div class="container">
     <!-- Profil section -->
+    <!-- Di portfolio.blade.php, tambahkan di bawah header atau di atas profile-section -->
+@if(session('login_success'))
+    <div class="login-success-message">
+        <div class="success-content">
+            <span style="margin-right: 10px;">✅</span>
+            {{ session('login_success') }}
+            <button class="close-success" onclick="this.parentElement.parentElement.style.display='none'">×</button>
+        </div>
+    </div>
+@endif
     <section class="profile-section">
             <div class="profile-content">
                 <p class="profile-greeting">Halo, {{ $user }}</p>
