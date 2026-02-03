@@ -53,7 +53,7 @@
     <section class="profile-section">
             <div class="profile-content">
                 <p class="profile-greeting">Halo, {{ $user }}</p>
-                <h1 class="profile-name">Nama Developer</h1>
+                <h1 class="profile-name">Flint'S</h1>
                 <h2 class="profile-title">Full Stack Web Developer</h2>
                 <p class="profile-description">
                     Saya seorang developer dengan spesialisasi dalam Laravel, PHP, dan teknologi web modern. 

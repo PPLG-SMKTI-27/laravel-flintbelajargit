@@ -25,7 +25,7 @@ Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-// Route untuk logout (opsional)
+// Route untuk logout
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route testing

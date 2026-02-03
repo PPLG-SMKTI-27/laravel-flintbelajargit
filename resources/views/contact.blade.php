@@ -777,6 +777,7 @@
                 <div class="map-placeholder">
                     <div>📍</div>
                     <p>Samarinda, Kaltim, Indonesia</p>
+                    <iframe style="border:0" src="https://www.google.com" width="1100" height="1000"></iframe>
                     <p style="font-size: 0.9rem; margin-top: 10px;">Bersedia untuk kerja remote atau onsite di area Jakarta</p>
                 </div>
             </div>
