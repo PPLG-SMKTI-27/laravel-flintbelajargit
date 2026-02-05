@@ -13,6 +13,16 @@
         </a>
     </section>
     
+    <!-- Statistik kecil (opsional) -->
+    <div class="project-stats">
+        <span class="stat-item">
+            <strong>{{ $projects->count() }}</strong> Proyek
+        </span>
+        <span class="stat-item">
+            <strong>{{ $projects->unique('category')->count() }}</strong> Kategori
+        </span>
+    </div>
+    
     <!-- Grid proyek -->
     <section class="projects-grid">
         @forelse($projects as $project)
@@ -38,7 +48,10 @@
                         <span class="tech-tag">PHP</span>
                     @endif
                 </div>
-                <!-- TOMBOL TIDAK DITAMPILKAN SESUAI PERMINTAAN -->
+                <!-- Akses method dari model (opsional) -->
+                <div class="project-meta">
+                    <small>ID: {{ $project->id }} • Dibuat: {{ $project->created_at->format('d M Y') }}</small>
+                </div>
             </div>
         </div>
         @empty
@@ -49,3 +62,34 @@
         @endforelse
     </section>
 @endsection
+
+@push('styles')
+<style>
+    .project-stats {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        margin: 20px 0 40px;
+    }
+    
+    .stat-item {
+        background: rgba(138, 43, 226, 0.1);
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid rgba(138, 43, 226, 0.2);
+    }
+    
+    .stat-item strong {
+        color: var(--primary-purple);
+        font-size: 1.2rem;
+    }
+    
+    .project-meta {
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--text-gray);
+        font-size: 0.85rem;
+    }
+</style>
+@endpush

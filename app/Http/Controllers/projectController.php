@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -20,25 +20,17 @@ class ProjectController extends Controller
     }   
 
     /**
-     * Menampilkan daftar proyek dari database
+     * Menampilkan daftar proyek dari database menggunakan Model
      */
     public function index()
     {
-        // Ambil data proyek dari database
-        $projects = DB::table('projects')
-            ->select('id', 'title', 'category', 'description', 'image', 'technologies', 'demo_url', 'source_url')
-            ->orderBy('created_at', 'desc')
-            ->get()
-            ->map(function ($project) {
-                // Decode JSON technologies ke array
-                $project->technologies = json_decode($project->technologies, true);
-                return $project;
-            });
-
-        // Jika database kosong, gunakan data dummy (fallback)
+        // Ambil semua proyek dengan Model, urutkan dari yang terbaru
+        $projects = Project::latest()->get();
+        
+        // Jika tidak ada data di database, buat data dummy (fallback)
         if ($projects->isEmpty()) {
             $projects = collect([
-                [
+                (object)[
                     'id' => 1,
                     'title' => 'Laravel E-Shop Platform',
                     'category' => 'E-commerce',
@@ -56,20 +48,47 @@ class ProjectController extends Controller
     }
 
     /**
-     * Menampilkan detail proyek (opsional)
+     * Menampilkan detail proyek berdasarkan ID
      */
     public function show($id)
     {
-        // Ambil data proyek berdasarkan ID
-        $project = DB::table('projects')->where('id', $id)->first();
+        // Gunakan Model untuk mencari proyek
+        $project = Project::find($id);
         
+        // Jika proyek tidak ditemukan, tampilkan error 404
         if (!$project) {
             abort(404, 'Proyek tidak ditemukan');
         }
 
-        // Decode JSON technologies
-        $project->technologies = json_decode($project->technologies, true);
-
         return view('projects.show', compact('project'));
+    }
+
+    /**
+     * Menampilkan proyek berdasarkan kategori (opsional)
+     */
+    public function byCategory($category)
+    {
+        $projects = Project::where('category', $category)->latest()->get();
+        
+        if ($projects->isEmpty()) {
+            return redirect()->route('projects.index')
+                ->with('error', 'Tidak ada proyek dengan kategori tersebut');
+        }
+
+        return view('projects.category', compact('projects', 'category'));
+    }
+
+    /**
+     * API endpoint untuk mendapatkan data proyek (opsional, untuk AJAX)
+     */
+    public function apiIndex()
+    {
+        $projects = Project::latest()->get();
+        
+        return response()->json([
+            'success' => true,
+            'data' => $projects,
+            'count' => $projects->count()
+        ]);
     }
 }
