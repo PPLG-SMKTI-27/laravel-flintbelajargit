@@ -49,8 +49,12 @@
                     @endif
                 </div>
                 <!-- Akses method dari model (opsional) -->
-                <div class="project-meta">
-                    <small>ID: {{ $project->id }} • Dibuat: {{ $project->created_at->format('d M Y') }}</small>
+                <div class="project-created_at">
+                    @if(isset($project->created_at))
+                        {{ \Carbon\Carbon::parse($project->created_at)->format('d M Y') }}
+                    @else
+                        Tanggal tidak tersedia = Data Dummy
+                    @endif
                 </div>
             </div>
         </div>
