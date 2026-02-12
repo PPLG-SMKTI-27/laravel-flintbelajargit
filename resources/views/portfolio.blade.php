@@ -18,7 +18,7 @@
         <ul>
             <li><a href="{{ url('/') }}">Beranda</a></li>
             <li><a href="{{ url('/about') }}">Tentang</a></li>
-            <li><a href="#skills">Keahlian</a></li>
+            <li><a href="{{ url('/about') }}#skills">Keahlian</a></li>
             <li><a href="{{ url('/contact') }}">Kontak</a></li>
             <li><a href="{{ url('/projects') }}">Proyek</a></li>
             <!-- Tombol login/logout dinamis -->
