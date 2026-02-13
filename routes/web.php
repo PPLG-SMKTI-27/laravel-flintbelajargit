@@ -1,10 +1,16 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
-// Route untuk halaman utama
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
+
+// Route untuk halaman utama (portfolio)
 Route::get('/', [ProjectController::class, 'portfolio'])->name('home');
 
 // Route untuk halaman about
@@ -21,14 +27,17 @@ Route::get('/contact', function () {
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects.index');
 Route::get('/projects/{id}', [ProjectController::class, 'show'])->name('projects.show');
 
-// Route untuk login
-Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+// Route untuk dashboard (hanya untuk yang sudah login)
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// Route untuk logout
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
-
-// Route testing
-Route::get('/index', function () {
-    return view('index');
+// Route untuk profile (Breeze)
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// INI WAJIB ADA! Include auth routes dari Breeze
+require __DIR__.'/auth.php';

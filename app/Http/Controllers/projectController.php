@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -12,6 +13,7 @@ class ProjectController extends Controller
      */
     public function portfolio(): \Illuminate\View\View
     {
+        $userName = Auth::check() ? Auth::user()->name : 'Flint';
         return view('portfolio', [
             'user' => 'Flint',
             'title' => 'Full Stack Developer',
